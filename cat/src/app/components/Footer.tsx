@@ -1,8 +1,12 @@
-import React from 'react'
+'use client'
 
-const Footer = () => {
+import { Box, Text } from '@chakra-ui/react'
+
+const Footer: React.FC = () => {
   return (
-    <div>Footer</div>
+    <Box as="footer" bg="teal.500" color="white" p={4} textAlign="center">
+      <Text>&copy; 2024 Ma dApp. Tous droits réservés.</Text>
+    </Box>
   )
 }
 
