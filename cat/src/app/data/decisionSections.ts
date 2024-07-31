@@ -27,7 +27,7 @@ export const decisionSections: { [key: string]: DecisionTree } = {
               content: "RM Pour Colonisation\nou canal bouché",
               type: "choice",
               color: "blue",
-              children: ["semi_critique", "critique"]
+              children: ["semi_critique_rm", "critique_rm"]
           },
           "rm_autre_raison": {
               id: "rm_autre_raison",
@@ -36,11 +36,18 @@ export const decisionSections: { [key: string]: DecisionTree } = {
               color: "blue",
               children: ["semi_critique_canal", "hautement_critique", "sans_canal"]
           },
-          "semi_critique": {
-              id: "semi_critique",
-              content: "Semi-critique\n(niveau intermédiaire) avec canal",
+          "semi_critique_rm": {
+              id: "semi_critique_rm",
+              content: "Semi-critique (niveau intermédiaire) avec canal",
               type: "action",
               color: "blue"
+          },
+          "critique_rm": {
+              id: "critique_rm",
+              content: "critique\n(haut-niveau) avec canal",
+              type: "choice",
+              color: "green",
+              children: ["non_sterilisable_rm", "sterilisable_sbt"]
           },
           "critique": {
               id: "critique",
@@ -67,6 +74,12 @@ export const decisionSections: { [key: string]: DecisionTree } = {
               content: "sans canal\n/ ETO",
               type: "action",
               color: "red"
+          },
+          "non_sterilisable_rm": {
+              id: "non_sterilisable_rm",
+              content: "Non Stérilisable",
+              type: "action",
+              color: "green"
           },
           "non_sterilisable": {
               id: "non_sterilisable",

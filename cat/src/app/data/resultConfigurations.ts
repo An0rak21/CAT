@@ -7,7 +7,7 @@ export type ResultData = {
   }
   
   export const resultConfigurations: { [key: string]: ResultData } = {
-    'semi_critique': {
+    'semi_critique_rm': {
       title: "Retour de maintenance pour colonisation/canal bouché – Endoscope Semi-critique",
       verification: ["Vérifier le NS (appareil & rapport d'intervention)"],
       endoscope: [
@@ -22,7 +22,7 @@ export type ResultData = {
       ],
       destinataires: ["UGDRE, Bactériologie"]
     },
-    'non_sterilisable': {
+    'non_sterilisable_rm': {
       title: "Retour de maintenance pour colonisationn/canal bouché – Endoscope critique non stérilisable",
       verification: ["Vérifier le NS (appareil & rapport d'intervention)"],
       endoscope: [
@@ -38,7 +38,7 @@ export type ResultData = {
       destinataires: ["UGDRE, Bactériologie"]
     },
     'sterilisable_sbt': {
-        title: "Retour de maintenance pour colonisationn/canal bouché – Endoscope critique stérilisable",
+        title: "Retour de maintenance pour colonisationn/canal bouché ou non – Endoscope critique stérilisable",
         verification: ["Vérifier le NS (appareil & rapport d'intervention)"],
         endoscope: [
           "Réaliser 2 cycles SBT (double nettoyage) en paillasse (écouvillonnage ++)",
@@ -56,7 +56,7 @@ export type ResultData = {
     title: "Retour de maintenance (hors colonisation/canal bouché) – Endoscope Semi-critique",
     verification: ["Vérifier le NS (appareil & rapport d'intervention)"],
     endoscope: [
-        "Réaliser 2 cycles coplet en LDE (phase d'écouvillonnage en paillasse ++)",
+        "Réaliser 2 cycles complet en LDE (phase d'écouvillonnage en paillasse ++)",
         "Remettre l'appareil en circuit patient sous condition du respect des protocoles en vigueur", 
     ],
     tracabilite: [
@@ -66,5 +66,33 @@ export type ResultData = {
     ],
     destinataires: ["UGDRE"]
     },
+    'non_sterilisable': {
+      title: "Retour de maintenance (hors colonisationn/canal bouché) – Endoscope critique non stérilisable",
+      verification: ["Vérifier le NS (appareil & rapport d'intervention)"],
+      endoscope: [
+        "Réaliser 2 cycles complets sporicides en paillasse (écouvillonnage ++)",
+        "Remettre l'appareil en circuit patient sous condition du respect des protocoles en vigueur",
+      ],
+      tracabilite: [
+        "Classeur de vie : archiver ce mail",
+        "Classeur recensement activité : noter le retour",
+        "Classeur de séquestre : archiver ce mail"
+      ],
+      destinataires: ["UGDRE"]
+    },
+    'sans_canal': {
+        title: "Retour de maintenance  – Endoscope sans canal / ETO",
+        verification: ["Vérifier le NS (appareil & rapport d'intervention)"],
+        endoscope: [
+          "Réaliser 2 cycles complets en laveur",
+          "Remettre l'appareil en circuit patient sous condition du respect des protocoles en vigueur",
+        ],
+        tracabilite: [
+          "Classeur de vie : archiver le rapport, archiver ce mail",
+          "Classeur recensement activité : noter le retour",
+          "Classeur de séquestre : archiver ce mail"
+        ],
+        destinataires: ["UGDRE"]
+      },
     // Ajoutez ici les autres configurations pour les différents cas
   }
