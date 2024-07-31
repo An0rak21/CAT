@@ -7,7 +7,7 @@ const Navbar: React.FC = () => {
   return (
     <Box as="nav" bg="teal.500" color="white" p={4}>
       <Flex align="center">
-        <Heading size="md">Ma dApp</Heading>
+        <Heading size="md">C.A.T.</Heading>
         <Spacer />
         <ThemeToggle />
       </Flex>

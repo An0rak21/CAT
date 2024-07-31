@@ -1,9 +1,10 @@
 'use client'
 
-import { Box, Heading } from '@chakra-ui/react'
+import { Box, Container, Heading } from '@chakra-ui/react'
 import { useParams, useRouter } from 'next/navigation'
-import DecisionTree from '../../components/DecisionTree'
+import InteractiveDecisionTree from '../../components/InteractiveDecisionTree'
 import { decisionSections } from '../../data/decisionSections'
+import { resultConfigurations } from '../../data/resultConfigurations'
 
 export default function DecisionTreePage() {
   const params = useParams()
@@ -13,10 +14,15 @@ export default function DecisionTreePage() {
   const tree = decisionSections[categoryId]
 
   const handleAction = (actionId: string) => {
-    // Ici, vous pouvez gérer l'action en fonction de l'ID
     console.log(`Action sélectionnée : ${actionId}`);
-    // Par exemple, rediriger vers une page de résultat :
-    // router.push(`/result/${actionId}`)
+    // Vérifiez si l'actionId correspond à une configuration de résultat
+    if (resultConfigurations[actionId]) {
+      // Si oui, redirigez vers la page de résultat
+      router.push(`/result/${actionId}`);
+    } else {
+      console.error(`Configuration de résultat non trouvée pour l'action : ${actionId}`);
+      // Gérez ici le cas où aucune configuration n'est trouvée
+    }
   }
 
   if (!tree) {
@@ -24,11 +30,24 @@ export default function DecisionTreePage() {
   }
 
   return (
-    <Box maxWidth="1200px" margin="auto" padding={8}>
+    <Container maxWidth="800px" py={8}>
       <Heading as="h1" size="xl" mb={8} textAlign="center">
-        Arbre décisionnel pour {categoryId}
+        {getCategoryTitle(categoryId)}
       </Heading>
-      <DecisionTree tree={tree} onAction={handleAction} />
-    </Box>
+      <InteractiveDecisionTree tree={tree} onAction={handleAction} />
+    </Container>
   )
+}
+
+function getCategoryTitle(categoryId: string) {
+  switch (categoryId) {
+    case 'endoscope':
+      return "Retour de maintenance d'un endoscope";
+    case 'biologique':
+      return "Résultats biologiques non conformes pour un endoscope";
+    case 'nouveau':
+      return "Réception d'un nouvel endoscope";
+    default:
+      return "Situation inconnue";
+  }
 }
