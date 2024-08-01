@@ -15,13 +15,13 @@ export default function DecisionTreePage() {
 
   const handleAction = (actionId: string) => {
     console.log(`Action sélectionnée : ${actionId}`);
-    // Vérifiez si l'actionId correspond à une configuration de résultat
+    // Vérification de la configuration de résultat
     if (resultConfigurations[actionId]) {
-      // Si oui, redirigez vers la page de résultat
+      // Si oui redirection vers la page de résultat
       router.push(`/result/${actionId}`);
     } else {
       console.error(`Configuration de résultat non trouvée pour l'action : ${actionId}`);
-      // Gérez ici le cas où aucune configuration n'est trouvée
+      // Gestion des erreurs
     }
   }
 

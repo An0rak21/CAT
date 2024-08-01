@@ -1,6 +1,6 @@
 'use client'
 
-import { Box, Heading, Text, VStack, UnorderedList, ListItem, Button } from '@chakra-ui/react'
+import { Box, Heading, Text, VStack, UnorderedList, ListItem, Button, Alert, AlertIcon, AlertTitle, AlertDescription } from '@chakra-ui/react'
 import { useParams, useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { resultConfigurations, ResultData } from '../../data/resultConfigurations'
@@ -30,7 +30,7 @@ export default function ResultPage() {
         <Box>
           <Heading as="h2" size="lg" mb={2}>Vérification</Heading>
           <UnorderedList>
-            {resultData.verification.map((item, index) => (
+            {resultData.verification?.map((item, index) => (
               <ListItem key={index}>{item}</ListItem>
             ))}
           </UnorderedList>
@@ -58,6 +58,16 @@ export default function ResultPage() {
           <Heading as="h2" size="lg" mb={2}>Destinataires mail</Heading>
           <Text>{resultData.destinataires.join(', ')}</Text>
         </Box>
+
+        {resultData.info && (
+          <Alert status="error" variant="solid" borderRadius="md">
+            <AlertIcon />
+            <Box flex="1">
+              <AlertTitle mb={1} fontSize="lg">Information importante</AlertTitle>
+              <AlertDescription>{resultData.info}</AlertDescription>
+            </Box>
+          </Alert>
+        )}
 
         <Button 
           colorScheme="blue" 

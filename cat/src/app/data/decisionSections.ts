@@ -81,5 +81,138 @@ export const decisionSections: { [key: string]: DecisionTree } = {
               color: "green"
           },
       }
-  }
+  },
+
+  "biologique": {
+    rootId: "root",
+    nodes: {
+        "root": {
+            id: "root",
+            content: "Résultats biologiques non conformes pour un endoscope",
+            type: "choice",
+            color: "red",
+            children: ["semi_critique", "hautement_critique"]
+        },
+        "semi_critique": {
+            id: "semi_critique",
+            content: "Semi-critique avec canal",
+            type: "choice",
+            color: "blue",
+            children: ["result_prov", "NC_alerte"]
+        },
+        "hautement_critique": {
+            id: "hautement_critique",
+            content: "Hautement critique avec canal, non stérilisable",
+            type: "choice",
+            color: "green",
+            children: ["first_prelev_critique", "controle_conforme", "controle_nc"]
+        },
+        "result_prov": {
+            id: "result_prov",
+            content: "Résultats provisoires, Culture positive",
+            type: "action",
+            color: "blue"
+        },
+        "NC_alerte": {
+            id: "NC_alerte",
+            content: "NC niveau Alerte ou Action",
+            type: "choice",
+            color: "blue",
+            children: ["first_prelevement", "Controle1_conforme", "Controle1_non_conforme", "Controle2_conforme", "Controle2_non_conforme"]
+        },
+        "first_prelevement": {
+            id: "first_prelevement",
+            content: "1er prélèvement",
+            type: "choice",
+            color: "white",
+            children: ["niveau_action", "niveau_alerte", "niveau_inconnu"]
+        },
+        "Controle1_conforme": {
+            id: "Controle1_conforme",
+            content: "Contrôle 1 conforme",
+            type: "action",
+            color: "white"
+        },
+        "Controle1_non_conforme": {
+            id: "Controle1_non_conforme",
+            content: "Contrôle 1 NC",
+            type: "choice",
+            color: "white",
+            children: ["germes_indicateurs_pos", "germes_indicateurs_neg"]
+        },
+        "Controle2_conforme": {
+            id: "Controle2_conforme",
+            content: "Contrôle 2 conforme",
+            type: "action",
+            color: "white"
+        },
+        "Controle2_non_conforme": {
+            id: "Controle2_non_conforme",
+            content: "Contrôle 2 NC",
+            type: "action",
+            color: "orange"
+        },
+        "first_prelev_critique": {
+            id: "first_prelev_critique",
+            content: "1er prélèvement",
+            type: "action",
+            color: "green"
+        },
+        "controle_conforme": {
+            id: "controle_conforme",
+            content: "Contrôle conforme",
+            type: "action",
+            color: "green"
+        },
+        "controle_nc": {
+            id: "controle_nc",
+            content: "Contrôle NC",
+            type: "choice",
+            color: "green",
+            children: ["germes_indicateurs_pos_critique", "germes_indicateurs_neg_critique"]
+        },
+        "niveau_action": {
+            id: "niveau_action",
+            content: "Niveau Action (germes indicateurs ou UFC > 25",
+            type: "action",
+            color: "red"
+        },
+        "niveau_alerte": {
+            id: "niveau_alerte",
+            content: "Niveau Alerte, absence de germes indicateurs et 5 ≤ UFC ≤ 25",
+            type: "action",
+            color: "orange"
+        },
+        "niveau_inconnu": {
+            id: "niveau_inconnu",
+            content: "Je ne connais pas le niveau (alerte ou action)",
+            type: "action",
+            color: "orange"
+        },
+        "germes_indicateurs_pos": {
+            id: "germes_indicateurs_pos",
+            content: "Présence de germes indicateurs",
+            type: "action",
+            color: "red"
+        },
+        "germes_indicateurs_neg": {
+            id: "germes_indicateurs_neg",
+            content: "Absence de germes indicateurs",
+            type: "action",
+            color: "orange"
+        },
+        "germes_indicateurs_pos_critique": {
+            id: "germes_indicateurs_pos_critique",
+            content: "Présence de germes indicateurs",
+            type: "action",
+            color: "red"
+        },
+        "germes_indicateurs_neg_critique": {
+            id: "germes_indicateurs_neg_critique",
+            content: "Absence de germes indicateurs",
+            type: "action",
+            color: "orange"
+        },
+    }
+}
 };
